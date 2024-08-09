@@ -1,16 +1,22 @@
-import NavBar from "./NavBar"
-import Logo from "./Logo"
-import ThemeToggle from "./ThemeToggle"
-import styled from "@emotion/styled"
-import { zIndexes } from "src/styles/zIndexes"
+import NavBar from "./NavBar";
+import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
+import styled from "@emotion/styled";
+import { zIndexes } from "src/styles/zIndexes";
+import { useLocation } from "react-router-dom";
+
 
 type Props = {
   fullWidth: boolean
 }
 
 const Header: React.FC<Props> = ({ fullWidth }) => {
+  const location = useLocation();
+
+  const isMainPage = location.pathname === "/";
+
   return (
-    <StyledWrapper>
+    <StyledWrapper fullWidth={isMainPage}>
       <div data-full-width={fullWidth} className="container">
         <Logo />
         <div className="nav">
@@ -38,7 +44,7 @@ const StyledWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1088px;
+    max-width: ${({ fullWidth }) => (fullWidth ? "1088px" : "896px")}; // 메인 페이지 여부에 따라 max-width 변경
     height: 3rem;
     margin: 0 auto;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
