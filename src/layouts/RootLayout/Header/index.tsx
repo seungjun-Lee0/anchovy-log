@@ -26,21 +26,22 @@ export default Header
 
 const StyledWrapper = styled.div`
   z-index: ${zIndexes.header};
-  position: sticky;
-  top: 0;
-  background-color: ${({ theme }) => theme.colors.gray2};
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-
+  top: 1%;
+  padding: 1rem 1rem 0;
   .container {
+    background-color : ${({ theme }) =>
+    theme.scheme === "light" ? "white" : theme.colors.gray4};
+    border-radius: 1.5rem;
     display: flex;
     padding-left: 1rem;
     padding-right: 1rem;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1120px;
+    max-width: 1088px;
     height: 3rem;
     margin: 0 auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     &[data-full-width="true"] {
       @media (min-width: 768px) {
         padding-left: 6rem;
