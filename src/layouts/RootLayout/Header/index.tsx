@@ -1,21 +1,16 @@
-import NavBar from "./NavBar";
-import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
-import styled from "@emotion/styled";
-import { zIndexes } from "src/styles/zIndexes";
-import { useLocation } from "react-router-dom";
+import NavBar from "./NavBar"
+import Logo from "./Logo"
+import ThemeToggle from "./ThemeToggle"
+import styled from "@emotion/styled"
+import { zIndexes } from "src/styles/zIndexes"
 
 type Props = {
-  fullWidth: boolean;
-};
+  fullWidth: boolean
+}
 
 const Header: React.FC<Props> = ({ fullWidth }) => {
-  const location = useLocation();
-
-  const isMainPage = location.pathname === "/";
-
   return (
-    <StyledWrapper fullWidth={isMainPage}>
+    <StyledWrapper>
       <div data-full-width={fullWidth} className="container">
         <Logo />
         <div className="nav">
@@ -24,20 +19,18 @@ const Header: React.FC<Props> = ({ fullWidth }) => {
         </div>
       </div>
     </StyledWrapper>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
 
-// StyledWrapper에서 fullWidth를 받을 수 있도록 타입 정의 추가
-const StyledWrapper = styled.div<{ fullWidth: boolean }>`
+const StyledWrapper = styled.div`
   z-index: ${zIndexes.header};
   top: 1%;
   padding: 1rem 1rem 0;
-
   .container {
-    background-color: ${({ theme }) =>
-      theme.scheme === "light" ? "white" : theme.colors.gray4};
+    background-color : ${({ theme }) =>
+    theme.scheme === "light" ? "white" : theme.colors.gray4};
     border-radius: 1.5rem;
     display: flex;
     padding-left: 1rem;
@@ -45,22 +38,20 @@ const StyledWrapper = styled.div<{ fullWidth: boolean }>`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: ${({ fullWidth }) => (fullWidth ? "1088px" : "896px")}; // 메인 페이지 여부에 따라 max-width 변경
+    max-width: 1088px;
     height: 3rem;
     margin: 0 auto;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-
     &[data-full-width="true"] {
       @media (min-width: 768px) {
         padding-left: 6rem;
         padding-right: 6rem;
       }
     }
-
     .nav {
       display: flex;
       gap: 0.75rem;
       align-items: center;
     }
   }
-`;
+`
