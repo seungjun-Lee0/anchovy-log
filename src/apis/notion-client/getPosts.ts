@@ -16,13 +16,13 @@ export const getPosts = async () => {
   let id = CONFIG.notionConfig.pageId as string
   const api = new NotionAPI()
 
-  const response = normalizeResponse(await api.getPage(id))
+  const response: any = normalizeResponse(await api.getPage(id))
   id = idToUuid(id)
-  const collection = Object.values(response.collection)[0]?.value
+  const collection = Object.values(response.collection)[0] as any
   const block = response.block
-  const schema = collection?.schema
+  const schema = collection?.value?.schema
 
-  const rawMetadata = block[id].value
+  const rawMetadata = block[id]?.value
 
   // Check Type
   if (
