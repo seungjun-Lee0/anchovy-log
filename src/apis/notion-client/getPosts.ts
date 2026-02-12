@@ -4,6 +4,7 @@ import { idToUuid } from "notion-utils"
 
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
+import { normalizeResponse } from "src/libs/utils/notion/normalizeResponse"
 import { TPosts } from "src/types"
 
 /**
@@ -15,7 +16,7 @@ export const getPosts = async () => {
   let id = CONFIG.notionConfig.pageId as string
   const api = new NotionAPI()
 
-  const response = await api.getPage(id)
+  const response = normalizeResponse(await api.getPage(id))
   id = idToUuid(id)
   const collection = Object.values(response.collection)[0]?.value
   const block = response.block
